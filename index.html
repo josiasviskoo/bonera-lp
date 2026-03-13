@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bonera — Kits de Brindes Corporativos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --laranja: #F4610A;
+      --laranja-escuro: #C44D06;
+      --laranja-claro: #FF8A40;
+      --preto: #0D0D0D;
+      --cinza-escuro: #1A1A1A;
+      --cinza-medio: #2C2C2C;
+      --branco: #FFFFFF;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--preto); color: var(--branco); overflow-x: hidden; }
+ 
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(13,13,13,0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(244,97,10,0.15);
+    }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px; }
+    .nav-logo span { color: var(--laranja); }
+    .nav-cta {
+      background: var(--laranja); color: var(--branco);
+      font-weight: 700; font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase;
+      padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--laranja-escuro); transform: translateY(-1px); }
+ 
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 60px 60px 60px 60px;
+      position: relative;
+    }
+    .hero-left::before {
+      content: ''; position: absolute; top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(244,97,10,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(244,97,10,0.12); border: 1px solid rgba(244,97,10,0.35);
+      color: var(--laranja-claro); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px;
+      margin-bottom: 28px; width: fit-content;
+      animation: fadeUp .6s .1s both;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.2rem, 5.5vw, 5.8rem);
+      line-height: 0.93; letter-spacing: 1px;
+      margin-bottom: 22px;
+      animation: fadeUp .6s .2s both;
+    }
+    .hero h1 em { color: var(--laranja); font-style: normal; }
+    .hero-sub {
+      font-size: 1.05rem; font-weight: 300;
+      color: rgba(255,255,255,0.65); line-height: 1.75;
+      max-width: 460px; margin-bottom: 36px;
+      animation: fadeUp .6s .3s both;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; animation: fadeUp .6s .4s both; }
+    .btn-primary {
+      background: var(--laranja); color: var(--branco);
+      font-weight: 700; font-size: 1rem; padding: 16px 36px;
+      border: none; border-radius: 6px; cursor: pointer; text-decoration: none;
+      transition: all .2s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--laranja-escuro); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(244,97,10,0.4); }
+    .btn-ghost {
+      color: rgba(255,255,255,0.55); font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color .2s;
+    }
+    .btn-ghost:hover { color: var(--branco); }
+    .btn-ghost svg { transition: transform .2s; }
+    .btn-ghost:hover svg { transform: translateX(4px); }
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 52px;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08);
+      animation: fadeUp .6s .5s both;
+    }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--laranja); display: block; line-height: 1; }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 4px; display: block; }
+ 
+    .hero-right { position: relative; overflow: hidden; animation: fadeUp .7s .2s both; }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .hero-right::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--preto) 0%, transparent 20%),
+                  linear-gradient(to top, var(--preto) 0%, transparent 15%);
+    }
+ 
+    /* STRIP */
+    .strip { background: var(--laranja); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+    .strip-inner { display: inline-flex; gap: 0; animation: marquee 22s linear infinite; }
+    .strip-item {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 2px;
+      padding: 0 32px; color: rgba(255,255,255,0.9); border-right: 1px solid rgba(255,255,255,0.3);
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+ 
+    /* DIFERENCIAIS */
+    .diferenciais { padding: 72px 40px; background: var(--cinza-escuro); }
+    .diferenciais-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .diff-card { padding: 26px 22px; border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; transition: border-color .2s, background .2s; }
+    .diff-card:hover { border-color: rgba(244,97,10,0.4); background: rgba(244,97,10,0.05); }
+    .diff-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+    .diff-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 7px; }
+    .diff-desc { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+ 
+    /* KITS */
+    .kits-section { padding: 100px 40px; }
+    .section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--laranja); margin-bottom: 10px; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1; letter-spacing: 1px; }
+    .section-header { max-width: 1100px; margin: 0 auto 56px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+    .section-sub { font-size: 0.9rem; color: rgba(255,255,255,0.4); max-width: 300px; line-height: 1.6; text-align: right; }
+ 
+    .kits-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .kit-card {
+      background: var(--cinza-medio); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .kit-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 54px rgba(0,0,0,0.45), 0 0 0 1px rgba(244,97,10,0.3);
+      border-color: rgba(244,97,10,0.4);
+    }
+    .kit-card.destaque {
+      border-color: var(--laranja);
+      background: linear-gradient(160deg, rgba(244,97,10,0.09) 0%, var(--cinza-medio) 45%);
+    }
+    .kit-img-wrap { overflow: hidden; position: relative; }
+    .kit-img { width: 100%; height: 240px; object-fit: cover; object-position: center; display: block; transition: transform .4s; }
+    .kit-card:hover .kit-img { transform: scale(1.05); }
+    .kit-tag-destaque {
+      position: absolute; top: 0; left: 0; z-index: 2;
+      background: var(--laranja); color: var(--branco);
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 0 0 8px 0;
+    }
+    .kit-body { padding: 26px; flex: 1; display: flex; flex-direction: column; }
+    .kit-nome { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 1px; margin-bottom: 4px; }
+    .kit-desc { font-size: 0.82rem; color: rgba(255,255,255,0.42); line-height: 1.6; margin-bottom: 18px; }
+    .kit-itens { list-style: none; margin-bottom: 22px; flex: 1; }
+    .kit-itens li {
+      font-size: 0.83rem; color: rgba(255,255,255,0.68);
+      padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .kit-itens li::before { content: ''; width: 5px; height: 5px; background: var(--laranja); border-radius: 50%; flex-shrink: 0; }
+    .kit-preco-de { font-size: 0.78rem; color: rgba(255,255,255,0.28); text-decoration: line-through; display: block; }
+    .kit-preco { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--branco); line-height: 1; margin: 2px 0 2px; }
+    .kit-preco span { font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 400; color: rgba(255,255,255,0.4); margin-left: 3px; }
+    .kit-obs { font-size: 0.7rem; color: rgba(255,255,255,0.28); display: block; margin-bottom: 18px; }
+    .btn-kit {
+      display: block; width: 100%; background: var(--laranja); color: var(--branco);
+      font-weight: 700; font-size: 0.88rem; padding: 14px; border: none; border-radius: 8px;
+      cursor: pointer; text-align: center; text-decoration: none; transition: all .2s;
+    }
+    .btn-kit:hover { background: var(--laranja-escuro); transform: translateY(-1px); }
+    .btn-kit-ghost {
+      display: block; width: 100%; background: transparent; color: var(--branco);
+      font-weight: 600; font-size: 0.88rem; padding: 14px;
+      border: 1px solid rgba(255,255,255,0.14); border-radius: 8px;
+      cursor: pointer; text-align: center; text-decoration: none; transition: all .2s;
+    }
+    .btn-kit-ghost:hover { border-color: var(--laranja); color: var(--laranja); }
+ 
+    /* GALERIA */
+    .galeria { padding: 80px 40px; background: var(--cinza-escuro); }
+    .galeria-inner { max-width: 1100px; margin: 0 auto; }
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 12px; margin-top: 48px;
+    }
+    .galeria-item { border-radius: 12px; overflow: hidden; position: relative; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+    .galeria-item:hover img { transform: scale(1.06); }
+    .galeria-item.tall { grid-row: span 2; }
+    .galeria-item.wide { grid-column: span 2; }
+    .galeria-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,0.75) 0%, transparent 55%);
+      opacity: 0; transition: opacity .3s;
+      display: flex; align-items: flex-end; padding: 18px;
+    }
+    .galeria-item:hover .galeria-overlay { opacity: 1; }
+    .galeria-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+ 
+    /* PROCESSO */
+    .processo { padding: 100px 40px; }
+    .processo-inner { max-width: 1100px; margin: 0 auto; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 56px; position: relative; }
+    .steps::before {
+      content: ''; position: absolute; top: 27px; left: calc(12.5%); right: calc(12.5%);
+      height: 1px; background: linear-gradient(to right, transparent, rgba(244,97,10,0.4), transparent);
+    }
+    .step { text-align: center; padding: 0 18px; }
+    .step-num {
+      width: 54px; height: 54px; background: var(--laranja); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+      margin: 0 auto 18px; position: relative; z-index: 1;
+    }
+    .step-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 7px; }
+    .step-desc { font-size: 0.8rem; color: rgba(255,255,255,0.42); line-height: 1.6; }
+ 
+    /* DEPOIMENTOS */
+    .social-proof { padding: 80px 40px; background: var(--cinza-escuro); }
+    .depoimentos { max-width: 1100px; margin: 48px auto 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .dep-card { background: var(--cinza-medio); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 26px; }
+    .dep-stars { color: var(--laranja); font-size: 0.85rem; margin-bottom: 12px; }
+    .dep-texto { font-size: 0.87rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 18px; }
+    .dep-autor { font-weight: 700; font-size: 0.88rem; }
+    .dep-cargo { font-size: 0.78rem; color: rgba(255,255,255,0.32); }
+ 
+    /* GARANTIA */
+    .garantia {
+      padding: 80px 40px;
+      background: linear-gradient(135deg, rgba(244,97,10,0.12), rgba(244,97,10,0.04));
+      border-top: 1px solid rgba(244,97,10,0.2); border-bottom: 1px solid rgba(244,97,10,0.2);
+    }
+    .garantia-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .garantia-icon { font-size: 2.8rem; margin-bottom: 18px; display: block; }
+    .garantia h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; letter-spacing: 1px; margin-bottom: 14px; }
+    .garantia p { font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.8; }
+ 
+    /* FAQ */
+    .faq { padding: 100px 40px; }
+    .faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .faq-q { font-weight: 600; font-size: 0.93rem; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; transition: color .2s; }
+    .faq-q:hover { color: var(--laranja); }
+    .faq-q .faq-arrow { font-size: 1.2rem; color: var(--laranja); transition: transform .25s; flex-shrink: 0; }
+    .faq-a { font-size: 0.86rem; color: rgba(255,255,255,0.48); line-height: 1.8; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .3s; }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
+    .faq-item.open .faq-arrow { transform: rotate(45deg); }
+ 
+    /* FINAL CTA */
+    .final-cta { padding: 120px 40px; text-align: center; position: relative; overflow: hidden; }
+    .final-cta::before {
+      content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(244,97,10,0.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .final-cta-inner { position: relative; max-width: 640px; margin: 0 auto; }
+    .final-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1; letter-spacing: 1px; margin-bottom: 18px; }
+    .final-cta h2 em { color: var(--laranja); font-style: normal; }
+    .final-cta p { font-size: 0.95rem; color: rgba(255,255,255,0.48); line-height: 1.8; margin-bottom: 36px; }
+ 
+    /* FOOTER */
+    footer { padding: 36px 40px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; }
+    .footer-logo span { color: var(--laranja); }
+    .footer-copy { font-size: 0.76rem; color: rgba(255,255,255,0.22); }
+ 
+    /* KIT CUSTOM */
+    .kit-custom { max-width: 1100px; margin: 44px auto 0; padding: 36px 40px; background: rgba(244,97,10,0.06); border: 1px solid rgba(244,97,10,0.2); border-radius: 14px; text-align: center; }
+ 
+    /* ANIMAÇÕES */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+ 
+    /* RESPONSIVO */
+    @media (max-width: 960px) {
+      nav { padding: 14px 20px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 55vw; max-height: 460px; }
+      .hero-left { padding: 60px 24px 40px; }
+      .diferenciais-inner { grid-template-columns: repeat(2, 1fr); }
+      .kits-grid { grid-template-columns: 1fr; max-width: 440px; }
+      .steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .steps::before { display: none; }
+      .depoimentos { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .galeria-item.tall, .galeria-item.wide { grid-row: auto; grid-column: auto; }
+      .galeria-item { height: 200px; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .section-sub { text-align: left; max-width: 100%; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 500px) {
+      .diferenciais-inner { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">B<span>onera</span></div>
+  <a href="#kits" class="nav-cta">Ver Kits</a>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-badge">🟠 Brindes Corporativos · Entrega Rápida</span>
+    <h1>BRINDES QUE <em>FIXAM</em> SUA MARCA</h1>
+    <p class="hero-sub">Kits prontos, personalizados e entregues em tempo recorde. Do brinde ao banner, a Bonera tem tudo que sua empresa precisa para se destacar.</p>
+    <div class="hero-actions">
+      <a href="#kits" class="btn-primary">Escolher meu kit</a>
+      <a href="#como-funciona" class="btn-ghost">
+        Como funciona
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">10+</span><span class="stat-label">Anos de mercado</span></div>
+      <div><span class="stat-num">24h</span><span class="stat-label">Prazo de entrega</span></div>
+      <div><span class="stat-num">500+</span><span class="stat-label">Itens disponíveis</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="narrativa-13.png" alt="Kit de brindes Bonera">
+  </div>
+</section>
+ 
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item">BRINDES CORPORATIVOS</span>
+    <span class="strip-item">ENTREGA EM 24H</span>
+    <span class="strip-item">PERSONALIZAÇÃO COM SUA LOGO</span>
+    <span class="strip-item">KITS PRONTOS</span>
+    <span class="strip-item">SÃO CARLOS E REGIÃO</span>
+    <span class="strip-item">MAIS DE 500 ITENS</span>
+    <span class="strip-item">BRINDES CORPORATIVOS</span>
+    <span class="strip-item">ENTREGA EM 24H</span>
+    <span class="strip-item">PERSONALIZAÇÃO COM SUA LOGO</span>
+    <span class="strip-item">KITS PRONTOS</span>
+    <span class="strip-item">SÃO CARLOS E REGIÃO</span>
+    <span class="strip-item">MAIS DE 500 ITENS</span>
+  </div>
+</div>
+ 
+<!-- DIFERENCIAIS -->
+<section class="diferenciais">
+  <div class="diferenciais-inner">
+    <div class="diff-card"><span class="diff-icon">⚡</span><div class="diff-title">Entrega no dia seguinte</div><p class="diff-desc">Pedido hoje, brinde na sua mesa amanhã. Sem enrolação, sem desculpa.</p></div>
+    <div class="diff-card"><span class="diff-icon">🎯</span><div class="diff-title">Personalização total</div><p class="diff-desc">Sua logo, suas cores. Cada item sai com a identidade da sua empresa.</p></div>
+    <div class="diff-card"><span class="diff-icon">📦</span><div class="diff-title">Kit completo e pronto</div><p class="diff-desc">Escolha o kit, a gente monta, personaliza e entrega. Simples assim.</p></div>
+    <div class="diff-card"><span class="diff-icon">🤝</span><div class="diff-title">Atendimento humano</div><p class="diff-desc">Fala com quem produz. Sem robô, sem demora. Solucionamos na hora.</p></div>
+  </div>
+</section>
+ 
+<!-- KITS -->
+<section class="kits-section" id="kits">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">Nossos produtos</p>
+      <h2 class="section-title">ESCOLHA SEU KIT</h2>
+    </div>
+    <p class="section-sub">Cada kit é personalizado com a identidade da sua empresa. Clique para garantir o seu.</p>
+  </div>
+ 
+  <div class="kits-grid">
+ 
+    <div class="kit-card">
+      <div class="kit-img-wrap">
+        <img src="narrativa-04.png" alt="Kit Essencial" class="kit-img">
+      </div>
+      <div class="kit-body">
+        <div class="kit-nome">Kit Essencial</div>
+        <p class="kit-desc">Perfeito para eventos, feiras e ações de marca no dia a dia.</p>
+        <ul class="kit-itens">
+          <li>Caneta personalizada (50 un)</li>
+          <li>Bloco de notas (50 un)</li>
+          <li>Sacola TNT com logo (50 un)</li>
+          <li>Adesivo da marca (100 un)</li>
+        </ul>
+        <span class="kit-preco-de">R$ 490,00</span>
+        <div class="kit-preco">R$ 390 <span>/ kit</span></div>
+        <span class="kit-obs">Personalização inclusa · Frete a consultar</span>
+        <a href="#" class="btn-kit-ghost">Quero esse kit →</a>
+      </div>
+    </div>
+ 
+    <div class="kit-card destaque">
+      <div class="kit-img-wrap">
+        <span class="kit-tag-destaque">⭐ Mais pedido</span>
+        <img src="narrativa-09.png" alt="Kit Corporativo" class="kit-img">
+      </div>
+      <div class="kit-body">
+        <div class="kit-nome">Kit Corporativo</div>
+        <p class="kit-desc">Ideal para presentear clientes, colaboradores e fechar parcerias.</p>
+        <ul class="kit-itens">
+          <li>Garrafa ou squeeze personalizada</li>
+          <li>Copo térmico com logo</li>
+          <li>Caneta premium (2 un)</li>
+          <li>Sacola de tecido personalizada</li>
+          <li>Embalagem com identidade visual</li>
+        </ul>
+        <span class="kit-preco-de">R$ 890,00</span>
+        <div class="kit-preco">R$ 720 <span>/ kit</span></div>
+        <span class="kit-obs">Personalização inclusa · Frete a consultar</span>
+        <a href="#" class="btn-kit">Quero esse kit →</a>
+      </div>
+    </div>
+ 
+    <div class="kit-card">
+      <div class="kit-img-wrap">
+        <img src="narrativa-10.png" alt="Kit Premium" class="kit-img">
+      </div>
+      <div class="kit-body">
+        <div class="kit-nome">Kit Premium</div>
+        <p class="kit-desc">Para quem quer causar impacto e deixar a marca na memória.</p>
+        <ul class="kit-itens">
+          <li>Mochila ou bolsa personalizada</li>
+          <li>Garrafa térmica com logo</li>
+          <li>Caderno capa dura</li>
+          <li>Caneta executiva</li>
+          <li>Caixa presente com acabamento</li>
+        </ul>
+        <span class="kit-preco-de">R$ 1.490,00</span>
+        <div class="kit-preco">R$ 1.190 <span>/ kit</span></div>
+        <span class="kit-obs">Personalização inclusa · Frete a consultar</span>
+        <a href="#" class="btn-kit-ghost">Quero esse kit →</a>
+      </div>
+    </div>
+ 
+    <div class="kit-card">
+      <div class="kit-img-wrap">
+        <img src="narrativa-08.png" alt="Kit Sport" class="kit-img">
+      </div>
+      <div class="kit-body">
+        <div class="kit-nome">Kit Sport</div>
+        <p class="kit-desc">Para equipes, academias, torneios e eventos esportivos.</p>
+        <ul class="kit-itens">
+          <li>Mochila tipo saco personalizada</li>
+          <li>Squeeze ou garrafa sport</li>
+          <li>Toalha de microfibra</li>
+          <li>Chaveiro com logo</li>
+        </ul>
+        <span class="kit-preco-de">R$ 690,00</span>
+        <div class="kit-preco">R$ 540 <span>/ kit</span></div>
+        <span class="kit-obs">Personalização inclusa · Frete a consultar</span>
+        <a href="#" class="btn-kit-ghost">Quero esse kit →</a>
+      </div>
+    </div>
+ 
+    <div class="kit-card">
+      <div class="kit-img-wrap">
+        <img src="narrativa-05.png" alt="Kit Eco" class="kit-img">
+      </div>
+      <div class="kit-body">
+        <div class="kit-nome">Kit Eco</div>
+        <p class="kit-desc">Materiais sustentáveis que valorizam sua marca e o planeta.</p>
+        <ul class="kit-itens">
+          <li>Garrafa bambu personalizada</li>
+          <li>Caneta de cortiça</li>
+          <li>Sacola ecobag</li>
+          <li>Embalagem kraft reciclável</li>
+        </ul>
+        <span class="kit-preco-de">R$ 780,00</span>
+        <div class="kit-preco">R$ 620 <span>/ kit</span></div>
+        <span class="kit-obs">Personalização inclusa · Frete a consultar</span>
+        <a href="#" class="btn-kit-ghost">Quero esse kit →</a>
+      </div>
+    </div>
+ 
+    <div class="kit-card destaque">
+      <div class="kit-img-wrap">
+        <span class="kit-tag-destaque">✦ Exclusivo</span>
+        <img src="narrativa-12.png" alt="Kit Executivo" class="kit-img">
+      </div>
+      <div class="kit-body">
+        <div class="kit-nome">Kit Executivo</div>
+        <p class="kit-desc">Alta percepção de valor. Para impressionar do primeiro ao último detalhe.</p>
+        <ul class="kit-itens">
+          <li>Caderno capa dura premium</li>
+          <li>Caneta executiva gravada</li>
+          <li>Garrafa elegante personalizada</li>
+          <li>Camiseta com bordado</li>
+          <li>Caixa rígida com acabamento</li>
+        </ul>
+        <span class="kit-preco-de">R$ 1.890,00</span>
+        <div class="kit-preco">R$ 1.490 <span>/ kit</span></div>
+        <span class="kit-obs">Personalização inclusa · Frete a consultar</span>
+        <a href="#" class="btn-kit">Quero esse kit →</a>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <div class="kit-custom">
+    <p style="font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--laranja); margin-bottom:10px;">Não achou o que procurava?</p>
+    <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; letter-spacing:1px; margin-bottom:10px;">MONTE UM KIT SOB MEDIDA</h3>
+    <p style="font-size:0.88rem; color:rgba(255,255,255,0.45); max-width:480px; margin: 0 auto 22px; line-height:1.7;">Temos mais de 500 itens disponíveis. Fale com a gente e criamos o kit perfeito para sua empresa ou evento.</p>
+    <a href="#" class="btn-primary" style="font-size:0.9rem; padding:13px 30px;">Solicitar orçamento personalizado</a>
+  </div>
+</section>
+ 
+<!-- GALERIA LIFESTYLE -->
+<section class="galeria">
+  <div class="galeria-inner">
+    <p class="section-eyebrow">Nossos produtos em ação</p>
+    <h2 class="section-title">PARA CADA MOMENTO, <em style="color:var(--laranja)">UM KIT</em></h2>
+    <div class="galeria-grid">
+      <div class="galeria-item tall">
+        <img src="narrativa-02.png" alt="Evento esportivo">
+        <div class="galeria-overlay"><span class="galeria-label">Eventos esportivos</span></div>
+      </div>
+      <div class="galeria-item">
+        <img src="narrativa-03.png" alt="Linha Eco">
+        <div class="galeria-overlay"><span class="galeria-label">Linha Eco</span></div>
+      </div>
+      <div class="galeria-item">
+        <img src="narrativa-07.png" alt="Kit viagem">
+        <div class="galeria-overlay"><span class="galeria-label">Kits de viagem</span></div>
+      </div>
+      <div class="galeria-item wide">
+        <img src="narrativa-12.png" alt="Kit lifestyle">
+        <div class="galeria-overlay"><span class="galeria-label">Kit Lifestyle & Executivo</span></div>
+      </div>
+      <div class="galeria-item">
+        <img src="narrativa-10.png" alt="Kit Premium">
+        <div class="galeria-overlay"><span class="galeria-label">Kit Premium</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- COMO FUNCIONA -->
+<section class="processo" id="como-funciona">
+  <div class="processo-inner">
+    <p class="section-eyebrow">Processo</p>
+    <h2 class="section-title">DO PEDIDO À ENTREGA</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-title">Escolha o kit</div><p class="step-desc">Selecione o kit que mais combina com sua marca ou solicite um personalizado.</p></div>
+      <div class="step"><div class="step-num">2</div><div class="step-title">Envie sua logo</div><p class="step-desc">Mande os arquivos da sua identidade visual. Nosso time cuida do restante.</p></div>
+      <div class="step"><div class="step-num">3</div><div class="step-title">Aprovação em minutos</div><p class="step-desc">Enviamos um preview da arte para você aprovar antes de produzir.</p></div>
+      <div class="step"><div class="step-num">4</div><div class="step-title">Receba em casa</div><p class="step-desc">Produção e entrega rápida. Sem surpresas, sem atraso.</p></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- DEPOIMENTOS -->
+<section class="social-proof">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p class="section-eyebrow">Clientes</p>
+    <h2 class="section-title">QUEM JÁ ESCOLHEU A BONERA</h2>
+    <div class="depoimentos">
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-texto">"Precisei de 200 kits para o meu evento em 2 dias. A Bonera entregou antes do prazo e com qualidade incrível. Todos os participantes elogiaram."</p>
+        <div class="dep-autor">Mariana S.</div>
+        <div class="dep-cargo">Coordenadora de eventos — São Carlos</div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-texto">"Não sabia que eles faziam tanta coisa. Quando vi o showroom, fiquei impressionado. Fechamos um pacote completo — brinde, banner e camiseta."</p>
+        <div class="dep-autor">Rafael T.</div>
+        <div class="dep-cargo">Diretor Comercial — Empresa local</div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-texto">"Atendimento rápido, preço justo e resultado profissional. Os kits foram presenteados para nossos parceiros e o retorno foi excelente."</p>
+        <div class="dep-autor">Beatriz M.</div>
+        <div class="dep-cargo">Gestora de Marketing</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- GARANTIA -->
+<section class="garantia">
+  <div class="garantia-inner">
+    <span class="garantia-icon">🛡️</span>
+    <h2>ENTREGAMOS O QUE PROMETEMOS</h2>
+    <p>Se o produto não chegar no prazo combinado ou não estiver de acordo com a aprovação, a gente refaz sem custo. Simples. Direto. Com respeito pelo seu tempo e pelo seu dinheiro.</p>
+  </div>
+</section>
+ 
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <p class="section-eyebrow">Dúvidas</p>
+    <h2 class="section-title" style="margin-bottom:8px;">PERGUNTAS FREQUENTES</h2>
+    <div class="faq-item open">
+      <div class="faq-q">Qual o prazo de entrega dos kits? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Para pedidos já aprovados, trabalhamos com entrega a partir de 24 horas para itens em estoque. Kits maiores podem levar de 3 a 5 dias úteis. O prazo exato é sempre confirmado no momento do pedido.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Tem quantidade mínima por kit? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Sim, cada kit possui uma quantidade mínima indicada. Para pedidos menores ou personalizados, entre em contato que avaliamos a viabilidade.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Posso personalizar com a minha logo? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Sim! Todos os kits incluem personalização com sua marca. Basta enviar o arquivo da logo em boa resolução (AI, EPS ou PDF vetorial) e nossa equipe cuida da arte e aprovação.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Vocês entregam fora de São Carlos? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Atendemos São Carlos e região com entrega própria. Para outras cidades, enviamos via transportadora. O frete é calculado no momento do pedido.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Como funciona o processo de aprovação da arte? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Após o pedido, enviamos um preview digital da arte em até algumas horas. Você aprova ou solicita ajustes. Só produzimos após a sua aprovação.</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <h2>SUA MARCA MERECE <em>SER LEMBRADA</em></h2>
+    <p>Não deixe para a última hora. Escolha seu kit agora, personalize com sua identidade e entregue uma experiência que ninguém vai esquecer.</p>
+    <a href="#kits" class="btn-primary" style="font-size:1rem; padding:17px 44px;">Ver os kits disponíveis →</a>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">B<span>onera</span></div>
+  <p class="footer-copy">© 2025 Bonera. Todos os direitos reservados. São Carlos — SP.</p>
+</footer>
+ 
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+  document.querySelectorAll('.btn-kit, .btn-kit-ghost, .kit-custom .btn-primary').forEach(btn => {
+    if (btn.getAttribute('href') === '#') {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        alert('Insira aqui o link de checkout externo deste kit.');
+      });
+    }
+  });
+</script>
+</body>
+</html>
